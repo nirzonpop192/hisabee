@@ -29,7 +29,7 @@ class HomeRepository @Inject constructor(
 
     ).liveData
 
-    suspend fun insertRepository(repository: Item){
+    suspend fun insertTodo(repository: Item){
         val  row=dao.insert(repository)
         Log.e(TAG, "row effected $row")
     }

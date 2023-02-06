@@ -24,12 +24,12 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     lateinit var pagingDataList: LiveData<PagingData<Item>>
 
 
-    fun addRepository(repositoryItem: Item){
-        viewModelScope.launch {
-            repository.insertRepository(repositoryItem)
-        }
-
-    }
+//    fun addRepository(repositoryItem: Item){
+//        viewModelScope.launch {
+//            repository.insertTodo(repositoryItem)
+//        }
+//
+//    }
 
 
 
@@ -54,8 +54,5 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
 
     }
 
-//    override fun invokeApi(query: String, sort: String, order: String, per_page: Int) {
-//        pagingDataList=repository.loadTodoList().cachedIn(viewModelScope)
-//
-//    }
+
 }

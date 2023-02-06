@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.faisal.hiasbe.R
 import com.faisal.hiasbe.adpter.OnItemClickListener
@@ -93,7 +94,9 @@ class HomeFragment : Fragment() {
 
     fun setListener(){
 
-
+        binding.floatingActionButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_addItemFragment)
+        }
         mAdapter.setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(item: Item?) {
 //                var bundle = bundleOf("repository" to item)

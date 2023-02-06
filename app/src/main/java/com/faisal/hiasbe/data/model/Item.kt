@@ -8,20 +8,17 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = "tbTodo")
 @Parcelize
 data class Item(
+
+    var title: String,
+    var dueDate: String,
+    var status: Boolean,
     @PrimaryKey(autoGenerate = true)
     var id: Int,
-    var title: String,
-    var text: String,
-    var passed: Boolean,
-    var dueDate: String,
-    var status: Status
-
     ): Parcelable {
-    constructor() : this(
-        0, "",
+    constructor(title: String,dueDate: String,status: Boolean) : this(
+        "",
         "",
         false,
-        "",
-        Status.TODO
+    0
     )
 }
