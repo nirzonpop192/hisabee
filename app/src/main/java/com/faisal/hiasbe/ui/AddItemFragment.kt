@@ -16,15 +16,16 @@ import com.faisal.hiasbe.data.model.Item
 
 import com.faisal.hiasbe.databinding.FragmentAddItemBinding
 import com.faisal.hiasbe.view_model.AddItemViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+@AndroidEntryPoint
 class AddItemFragment : Fragment() {
 
     private lateinit var binding: FragmentAddItemBinding
     companion object{
-        val TAG= HomeFragment::class.java.name
+        val TAG= AddItemFragment::class.java.name
         lateinit var viewModel: AddItemViewModel
     }
 
@@ -88,7 +89,7 @@ class AddItemFragment : Fragment() {
             val currentDate = sdf.format(Date())
             Log.e("TAG"," C DATE is  "+currentDate)
 
-            if (false) {
+
                 viewModel.addToDoItem(Item( mTitle,  currentDate,  false))
                 cancel()
                 Toast.makeText(
@@ -97,11 +98,7 @@ class AddItemFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
 
-            } else Toast.makeText(
-                context,
-                "Error you can't enter a date that is already passed !",
-                Toast.LENGTH_SHORT
-            ).show()
+
         }
     }
 }

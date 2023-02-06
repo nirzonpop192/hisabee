@@ -22,6 +22,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     }
     var isLoading:MutableLiveData<Boolean> =MutableLiveData()
     lateinit var pagingDataList: LiveData<PagingData<Item>>
+    lateinit var todoList: MutableLiveData<List<Item>>
 
 
 //    fun addRepository(repositoryItem: Item){
@@ -49,6 +50,8 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
         isLoading.value=true
         viewModelScope.launch {
             pagingDataList=repository.loadTodoList().cachedIn(viewModelScope)
+            todoList.value=repository.getData()
+            todoList.value=repository.getData()
 
         }
 

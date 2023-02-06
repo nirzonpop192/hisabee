@@ -1,5 +1,6 @@
 package com.faisal.hiasbe.paging
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.faisal.hiasbe.data.local.TodoDao
@@ -29,11 +30,11 @@ class TodoPagingSource(private  val doa: TodoDao) : PagingSource<Int, Item>(){
 
 
             val dataSet = doa.getToDoList()
-
+            Log.e("dim",doa.getToDoList().size.toString())
             return LoadResult.Page(
                 data = dataSet,
                 prevKey = if (pagePosition == 1) null else pagePosition - 1,
-                nextKey = if (pagePosition == 100) null else pagePosition + 1
+                nextKey = if (pagePosition == doa.getToDoList().size) null else pagePosition + 1
             )
 
 

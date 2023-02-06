@@ -24,7 +24,7 @@ class HomeRepository @Inject constructor(
 
 
     fun loadTodoList()= Pager(
-        config = PagingConfig(pageSize = 10, maxSize = 5),
+        config = PagingConfig(pageSize = 3, maxSize = 9),
         pagingSourceFactory = { TodoPagingSource(dao) }
 
     ).liveData
@@ -37,7 +37,7 @@ class HomeRepository @Inject constructor(
 
 
 
-    fun getRepositories() : List<Item> {
+    fun getData() : List<Item> {
         return dao.getToDoList()
     }
 

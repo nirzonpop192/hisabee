@@ -25,6 +25,9 @@ class TodoPagingAdapter : PagingDataAdapter<Item, TodoPagingAdapter.RepoViewHold
         }
 
     }
+    public fun getSize(): Int {
+        return getItemCount()
+    }
 
     fun setOnItemClickListener(listener:OnItemClickListener){
         this.listener=listener

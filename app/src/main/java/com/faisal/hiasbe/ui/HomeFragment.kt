@@ -1,6 +1,9 @@
 package com.faisal.hiasbe.ui
 
+import android.os.AsyncTask
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.paging.PageKeyedDataSource
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.faisal.hiasbe.R
 import com.faisal.hiasbe.adpter.OnItemClickListener
@@ -16,6 +21,7 @@ import com.faisal.hiasbe.data.model.Item
 import com.faisal.hiasbe.databinding.FragmentHomeBinding
 import com.faisal.hiasbe.view_model.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.concurrent.Executor
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,7 +76,9 @@ class HomeFragment : Fragment() {
 
             viewModel.isLoading.value=false;
             Log.e(TAG, " observing ")
-            mAdapter.submitData(lifecycle, it)
+
+
+           mAdapter.submitData(lifecycle, it)
             Log.e(TAG, "onResume:  size of adapter ${mAdapter.snapshot().items.size}", )
 
         }
@@ -114,4 +122,28 @@ class HomeFragment : Fragment() {
     }
 
 
+}
+
+class UiThreadExecutor: Executor {
+    private val handler = Handler (Looper.getMainLooper ())
+    override fun execute (command: Runnable) {
+        handler.post (command)
+    }
+}
+
+class ListDataSource (private val items: List<Item>): PageKeyedDataSource<Int, Item>() {
+    override fun loadInitial(
+        params: LoadInitialParams<Int>,
+        callback: LoadInitialCallback<Int, Item>
+    ) {
+        callback.onResult(items, 0, items.size)
+    }
+
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Item>) {
+
+    }
+
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Item>) {
+
+    }
 }
