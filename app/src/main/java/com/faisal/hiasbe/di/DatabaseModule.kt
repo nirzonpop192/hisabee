@@ -2,8 +2,8 @@ package com.faisal.hiasbe.di
 
 import android.app.Application
 import androidx.room.Room
-import com.faisal.hiasbe.local.TodoDao
-import com.faisal.hiasbe.local.TodoDataBase
+import com.faisal.hiasbe.data.local.TodoDao
+import com.faisal.hiasbe.data.local.TodoDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,8 +20,8 @@ class DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(application: Application, callback: TodoDataBase.Callback):TodoDataBase{
-        return Room.databaseBuilder(application,TodoDataBase::class.java,DATA_BASE_NAME)
+    fun provideDatabase(application: Application, callback: TodoDataBase.Callback): TodoDataBase {
+        return Room.databaseBuilder(application, TodoDataBase::class.java,DATA_BASE_NAME)
             .fallbackToDestructiveMigration()
             .addCallback(callback)
             .allowMainThreadQueries()
@@ -29,7 +29,7 @@ class DatabaseModule {
     }
 
     @Provides
-    fun provideGitRepositoryDoa(database:TodoDataBase): TodoDao {
+    fun provideGitRepositoryDoa(database: TodoDataBase): TodoDao {
         return database.getTodoDao()
     }
 

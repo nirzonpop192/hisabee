@@ -1,4 +1,4 @@
-package com.faisal.hiasbe.model
+package com.faisal.hiasbe.data.model
 
 import android.os.Parcelable
 import androidx.room.Entity

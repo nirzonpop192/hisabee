@@ -1,9 +1,9 @@
-package com.faisal.hiasbe.local
+package com.faisal.hiasbe.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.faisal.hiasbe.di.ApplicationScope
-import com.faisal.hiasbe.model.Item
+import com.faisal.hiasbe.data.model.Item
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 import javax.inject.Provider
@@ -15,7 +15,7 @@ import javax.inject.Provider
 abstract class TodoDataBase : RoomDatabase() {
 
 
-    abstract fun  getTodoDao():TodoDao
+    abstract fun  getTodoDao(): TodoDao
 
 
     class Callback @Inject constructor(

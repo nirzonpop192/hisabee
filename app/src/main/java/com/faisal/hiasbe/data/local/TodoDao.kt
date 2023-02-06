@@ -1,13 +1,13 @@
-package com.faisal.hiasbe.local
+package com.faisal.hiasbe.data.local
 
 import androidx.room.*
-import com.faisal.hiasbe.model.Item
+import com.faisal.hiasbe.data.model.Item
 
 
 @Dao
 interface TodoDao {
     @Query("SELECT * FROM tbTodo")
-    fun getRepository() : List<Item>
+    fun getToDoList() : List<Item>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(repositoryItem: Item) : Long
