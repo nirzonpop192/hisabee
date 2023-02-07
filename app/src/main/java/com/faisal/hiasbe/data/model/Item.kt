@@ -10,17 +10,17 @@ import kotlinx.parcelize.Parcelize
 data class Item(
 
     var title: String,
+    @PrimaryKey
     var dueDate: String,
     var status: Boolean,
-    @PrimaryKey(autoGenerate = true)
-    var id: Int,
+
     ): Parcelable {
     constructor() : this(
         "",
         "",
         false,
-    0
+
     )
 
-    constructor(mTitle: String, currentDate: String, b: Boolean) : this()
+
 }
