@@ -10,7 +10,7 @@ import javax.inject.Provider
 
 
 
-@Database(version = 1, entities = [Item::class])
+@Database(version = 2, entities = [Item::class])
 
 abstract class TodoDataBase : RoomDatabase() {
 

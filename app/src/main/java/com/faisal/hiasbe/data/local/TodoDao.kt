@@ -9,6 +9,9 @@ interface TodoDao {
     @Query("SELECT * FROM tbTodo")
     fun getToDoList() : List<Item>
 
+    @Query("SELECT COUNT(*) FROM tbTodo")
+    fun getCount() : Int
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(repositoryItem: Item) : Long
 

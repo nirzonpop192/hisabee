@@ -1,5 +1,6 @@
 package com.faisal.hiasbe.view_model
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,7 +23,8 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     }
     var isLoading:MutableLiveData<Boolean> =MutableLiveData()
     lateinit var pagingDataList: LiveData<PagingData<Item>>
-    lateinit var todoList: MutableLiveData<List<Item>>
+     var todoList: MutableLiveData<List<Item>> =MutableLiveData()
+     var counted: MutableLiveData<Int> =MutableLiveData()
 
 
 //    fun addRepository(repositoryItem: Item){
@@ -40,6 +42,23 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
 
         }
     }
+    fun count(){
+        viewModelScope.launch{
+            counted.value=repository.getCount()
+
+        }
+
+    }
+    fun load(){
+        viewModelScope.launch {
+           // pagingDataList=repository.loadTodoList().cachedIn(viewModelScope)
+          var  dim:List<Item> =repository.getData()
+            Log.e("dim","dim list "+dim.size)
+            todoList.value=repository.getData()
+
+
+        }
+    }
 
 
 
@@ -51,7 +70,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
         viewModelScope.launch {
             pagingDataList=repository.loadTodoList().cachedIn(viewModelScope)
             todoList.value=repository.getData()
-            todoList.value=repository.getData()
+//            todoList.value=repository.getData()
 
         }
 

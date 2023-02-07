@@ -16,6 +16,7 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.faisal.hiasbe.R
 import com.faisal.hiasbe.adpter.OnItemClickListener
+import com.faisal.hiasbe.adpter.TodoNormalAdapter
 import com.faisal.hiasbe.adpter.TodoPagingAdapter
 import com.faisal.hiasbe.data.model.Item
 import com.faisal.hiasbe.databinding.FragmentHomeBinding
@@ -36,6 +37,8 @@ class HomeFragment : Fragment() {
 
 
     lateinit var mAdapter: TodoPagingAdapter
+    lateinit var gAdapter: TodoNormalAdapter
+    private var list : MutableList<Item> =mutableListOf()
 
 
     private lateinit var binding: FragmentHomeBinding
@@ -63,7 +66,8 @@ class HomeFragment : Fragment() {
 
 
         viewModel.loadData()
-
+        viewModel.load()
+viewModel.count()
 
         setObserver()
         setListener()
@@ -71,16 +75,24 @@ class HomeFragment : Fragment() {
     }
     fun setObserver(){
 
-
+viewModel.counted.observe(viewLifecycleOwner){
+    Log.e(TAG, " observing ")
+    Log.e("dim", " count "+it)
+}
         viewModel.pagingDataList.observe(viewLifecycleOwner){
 
             viewModel.isLoading.value=false;
             Log.e(TAG, " observing ")
 
 
-           mAdapter.submitData(lifecycle, it)
+//           mAdapter.submitData(lifecycle, it)
             Log.e(TAG, "onResume:  size of adapter ${mAdapter.snapshot().items.size}", )
 
+        }
+        viewModel.todoList.observe(viewLifecycleOwner){
+            list.addAll(it)
+//            adapter.notifyDataSetChanged()
+            gAdapter.updateData(it)
         }
         viewModel.isLoading.observe(viewLifecycleOwner){
             if(it)
@@ -92,11 +104,12 @@ class HomeFragment : Fragment() {
 
     fun setAdapter (){
         mAdapter=TodoPagingAdapter()
+        gAdapter=TodoNormalAdapter(list)
 
         binding.rvRepositoryList.apply {
             this.layoutManager= LinearLayoutManager(requireContext())
             this.setHasFixedSize(true)
-            this.adapter=mAdapter
+            this.adapter=gAdapter
         }
     }
 

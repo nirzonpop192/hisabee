@@ -41,6 +41,10 @@ class HomeRepository @Inject constructor(
         return dao.getToDoList()
     }
 
+    fun getCount():Int{
+        return dao.getCount()
+    }
+
     suspend fun deleteAllRepositories (){
         dao.deleteAll()
     }
