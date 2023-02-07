@@ -42,7 +42,7 @@ class TodoPagingAdapter : PagingDataAdapter<Item, TodoPagingAdapter.RepoViewHold
 
     class RepoViewHolder(val  binding:RowItemRepoBinding): RecyclerView.ViewHolder(binding.root){
         val tvName=binding.tvTitle
-        val tvStar=binding.tvStar
+        val tvStar=binding.cbDone
 
     }
 

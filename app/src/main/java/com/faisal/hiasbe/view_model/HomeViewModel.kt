@@ -52,15 +52,20 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     fun load(){
         viewModelScope.launch {
            // pagingDataList=repository.loadTodoList().cachedIn(viewModelScope)
-          var  dim:List<Item> =repository.getData()
-            Log.e("dim","dim list "+dim.size)
+//          var  dim:List<Item> =repository.getData()
+//            Log.e("dim","dim list "+dim.size)
             todoList.value=repository.getData()
 
 
         }
     }
 
+    fun updateToDoItem(item: Item) {
+        viewModelScope.launch {
+            repository.update(item)
+        }
 
+    }
 
     /**
      * load method invoke the pager

@@ -124,6 +124,14 @@ viewModel.counted.observe(viewLifecycleOwner){
 //                findNavController().navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
             }
         })
+        gAdapter.setOnItemClickListener(
+            object : OnItemClickListener {
+                override fun onItemClick(item: Item?) {
+                    item?.status=!item?.status!!
+                    viewModel.updateToDoItem(item)
+                }
+            }
+        )
 
     }
 
