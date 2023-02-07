@@ -85,7 +85,7 @@ viewModel.counted.observe(viewLifecycleOwner){
             Log.e(TAG, " observing ")
 
 
-//           mAdapter.submitData(lifecycle, it)
+           mAdapter.submitData(lifecycle, it)
             Log.e(TAG, "onResume:  size of adapter ${mAdapter.snapshot().items.size}", )
 
         }
@@ -109,7 +109,8 @@ viewModel.counted.observe(viewLifecycleOwner){
         binding.rvRepositoryList.apply {
             this.layoutManager= LinearLayoutManager(requireContext())
             this.setHasFixedSize(true)
-            this.adapter=gAdapter
+//           this.adapter=gAdapter
+           this.adapter=mAdapter
         }
     }
 
@@ -120,8 +121,8 @@ viewModel.counted.observe(viewLifecycleOwner){
         }
         mAdapter.setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(item: Item?) {
-//                var bundle = bundleOf("repository" to item)
-//                findNavController().navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
+                item?.status=!item?.status!!
+                viewModel.updateToDoItem(item)
             }
         })
         gAdapter.setOnItemClickListener(

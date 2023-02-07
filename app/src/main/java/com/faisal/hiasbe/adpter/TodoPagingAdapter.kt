@@ -51,7 +51,7 @@ class TodoPagingAdapter : PagingDataAdapter<Item, TodoPagingAdapter.RepoViewHold
     companion object{
         private val COMPARATOR= object : DiffUtil.ItemCallback<Item>(){
             override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
-                return  oldItem.dueDate==newItem.dueDate
+                return  oldItem.id==newItem.id
             }
 
             override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {

@@ -10,16 +10,24 @@ import kotlinx.parcelize.Parcelize
 data class Item(
 
     var title: String,
-    @PrimaryKey
+
     var dueDate: String,
     var status: Boolean,
+    @PrimaryKey(autoGenerate = true)
+    var id:Int
 
     ): Parcelable {
     constructor() : this(
         "",
         "",
         false,
-
+        0
+    )
+    constructor(mTitle:String,currentime:String,boolean: Boolean) : this(
+        mTitle,
+        currentime,
+        boolean,
+        (0..100).random()
     )
 
 
