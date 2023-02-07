@@ -18,9 +18,11 @@ class TodoPagingAdapter : PagingDataAdapter<Item, TodoPagingAdapter.RepoViewHold
         item.let {
             holder.tvName.text= item?.title
 
-
+            holder.isDone.isChecked= item?.status == true
             holder.itemView.setOnClickListener{
                 listener?.onItemClick(item)
+
+                holder.isDone.isChecked= item?.status == true
             }
         }
 
@@ -42,7 +44,7 @@ class TodoPagingAdapter : PagingDataAdapter<Item, TodoPagingAdapter.RepoViewHold
 
     class RepoViewHolder(val  binding:RowItemRepoBinding): RecyclerView.ViewHolder(binding.root){
         val tvName=binding.tvTitle
-        val tvStar=binding.cbDone
+        val isDone=binding.cbDone
 
     }
 
