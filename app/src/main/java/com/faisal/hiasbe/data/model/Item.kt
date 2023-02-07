@@ -15,10 +15,12 @@ data class Item(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
     ): Parcelable {
-    constructor(title: String,dueDate: String,status: Boolean) : this(
+    constructor() : this(
         "",
         "",
         false,
     0
     )
+
+    constructor(mTitle: String, currentDate: String, b: Boolean) : this()
 }

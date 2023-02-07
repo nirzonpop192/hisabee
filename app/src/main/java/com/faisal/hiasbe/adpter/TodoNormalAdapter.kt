@@ -15,7 +15,7 @@ class TodoNormalAdapter (private var list : List<Item>
 
     class ViewHolder(binding: RowItemRepoBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        val orderId : TextView = binding.tvTitle
+        val title : TextView = binding.tvTitle
 //        val price : TextView = binding.tvPrice
 //        val deliveryDate : TextView = binding.tvDate
 //        val totalItem : TextView = binding.tvTotalItem
@@ -34,7 +34,7 @@ class TodoNormalAdapter (private var list : List<Item>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.orderId.text=list.get(position).title
+        holder.title.text=list.get(position).title
 //        holder.price.text="ট ${list.get(position).totalValue.toString()}"
 //        holder.deliveryDate.text=DateFormatManager.formatDateTime(list.get(position).cd)
 //        holder.totalItem.text= "Total item:${list.get(position).totalItem.toString()}"
