@@ -24,6 +24,12 @@ class TodoPagingAdapter : PagingDataAdapter<Item, TodoPagingAdapter.RepoViewHold
 
                 holder.isDone.isChecked= item?.status == true
             }
+
+            holder.isDone.setOnCheckedChangeListener{
+                    buttonView, isChecked ->
+                listener?.onItemClick(item)
+            }
+
         }
 
     }
