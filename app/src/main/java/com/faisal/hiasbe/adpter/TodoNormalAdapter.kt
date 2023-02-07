@@ -44,6 +44,10 @@ class TodoNormalAdapter (private var list : List<Item>
             listener?.onItemClick(list.get(position))
             holder.isDone.isChecked=list.get(position).status
         }
+        holder.isDone.setOnCheckedChangeListener{
+                buttonView, isChecked ->
+            listener?.onItemClick(list.get(position))
+        }
 //        holder.price.text="ট ${list.get(position).totalValue.toString()}"
 //        holder.deliveryDate.text=DateFormatManager.formatDateTime(list.get(position).cd)
 //        holder.totalItem.text= "Total item:${list.get(position).totalItem.toString()}"

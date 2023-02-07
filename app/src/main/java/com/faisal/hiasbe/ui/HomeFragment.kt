@@ -109,8 +109,8 @@ viewModel.counted.observe(viewLifecycleOwner){
         binding.rvRepositoryList.apply {
             this.layoutManager= LinearLayoutManager(requireContext())
             this.setHasFixedSize(true)
-//           this.adapter=gAdapter
-           this.adapter=mAdapter
+           this.adapter=gAdapter
+   //        this.adapter=mAdapter
         }
     }
 
